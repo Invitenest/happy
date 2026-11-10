@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Feliz Cumpleaños Abigail!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #23113d 0%, #080314 100%);
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    /* --- REPRODUCTOR ESTILO VINILO DEL CÓDIGO PROMO --- */
+    .music-controller {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 52px;
+      height: 52px;
+      background: radial-gradient(circle, #2a1f06, #0a192f);
+      border: 2px solid #d4af37;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f3e5ab;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 15px rgba(212, 175, 55, 0.4);
+      z-index: 100;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .music-controller:hover {
+      transform: scale(1.1);
+    }
+
+    .music-controller.playing {
+      animation: rotateVinyl 4s linear infinite;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+    }
+
+    @keyframes rotateVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* --- DECORACIONES Y ANIMACIONES DEL FONDO --- */
+    .bg-decorations {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    /* Luces Neón */
+    .glow-orb {
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.45;
+      animation: pulseGlow 5s ease-in-out infinite alternate;
+    }
+    .orb-1 { top: -100px; left: -100px; background: #ff2a6d; }
+    .orb-2 { bottom: -100px; right: -100px; background: #05d9e8; }
+    .orb-3 { top: 40%; left: 30%; background: #ffb86c; }
+    .orb-4 { top: 10%; right: 10%; background: #b5179e; }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.65; transform: scale(1.25); }
+    }
+
+    /* Elementos Flotantes */
+    .floating-item {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatItem 8s linear infinite;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+    }
+
+    .item-1 { left: 4%; animation-duration: 9s; animation-delay: 0s; }
+    .item-2 { left: 12%; animation-duration: 11s; animation-delay: 3s; }
+    .item-3 { left: 88%; animation-duration: 8s; animation-delay: 1s; }
+    .item-4 { left: 94%; animation-duration: 10s; animation-delay: 4s; }
+    .item-5 { left: 2%; animation-duration: 12s; animation-delay: 2s; }
+    .item-6 { left: 90%; animation-duration: 9.5s; animation-delay: 5s; }
+
+    @keyframes floatItem {
+      0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
+      20% { opacity: 0.9; }
+      80% { opacity: 0.9; }
+      100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    /* Estrellas Parpadeantes */
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #fff, 0 0 20px #ff79c6;
+      animation: sparkle 2s infinite ease-in-out;
+    }
+
+    .s1 { top: 15%; left: 18%; animation-delay: 0.2s; }
+    .s2 { top: 35%; left: 8%; animation-delay: 0.8s; }
+    .s3 { top: 70%; left: 15%; animation-delay: 1.4s; }
+    .s4 { top: 20%; right: 16%; animation-delay: 0.5s; }
+    .s5 { top: 55%; right: 7%; animation-delay: 1.1s; }
+    .s6 { top: 80%; right: 20%; animation-delay: 1.7s; }
+
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(2.4); opacity: 1; }
+    }
+
+    /* Lluvia de Confeti */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 14px;
+      opacity: 0.7;
+      animation: confettiFall 6s linear infinite;
+    }
+    .c1 { left: 10%; background: #ff4d6d; animation-delay: 0s; }
+    .c2 { left: 25%; background: #ffd166; animation-delay: 2s; }
+    .c3 { left: 50%; background: #06d6a0; animation-delay: 4s; }
+    .c4 { left: 75%; background: #118ab2; animation-delay: 1s; }
+    .c5 { left: 90%; background: #ff70a6; animation-delay: 3s; }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.8; }
+      100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ENCABEZADO PRINCIPAL */
+    .header-title {
+      text-align: center;
+      z-index: 10;
+      margin-bottom: 50px;
+    }
+
+    .header-title h1 {
+      color: #ffffff;
+      font-size: 2.6rem;
+      font-weight: 600;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(247, 37, 133, 0.4);
+      margin-bottom: 8px;
+    }
+
+    .hint {
+      color: #ffb86c;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-shadow: 0 0 10px rgba(255, 184, 108, 0.5);
+      animation: pulseHint 1.5s infinite;
+    }
+
+    @keyframes pulseHint {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.03); }
+    }
+
+    /* GRID DE LAS CARTAS */
+    .cards-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 60px 40px;
+      max-width: 1200px;
+      width: 100%;
+      z-index: 10;
+      margin-top: 40px;
+    }
+
+    /* SOBRE BASE */
+    .envelope-wrapper {
+      position: relative;
+      width: 320px;
+      height: 220px;
+      border-radius: 16px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75);
+      cursor: pointer;
+      margin-top: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .envelope-wrapper:hover {
+      transform: translateY(-6px);
+    }
+
+    /* SOLAPA DEL SOBRE */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      transform-origin: top;
+      z-index: 5;
+      transition: transform 0.5s ease-in-out, z-index 0.1s 0.2s;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+    }
+
+    /* BOLSILLO FRONTAL */
+    .envelope-pocket {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* SELLO DE CERA */
+    .wax-seal {
+      position: absolute;
+      top: 115px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      z-index: 6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+      border: 2px solid rgba(0,0,0,0.2);
+      transition: transform 0.4s ease, opacity 0.3s ease;
+    }
+
+    .wax-seal span {
+      font-size: 1.3rem;
+    }
+
+    /* CARTA INTERIOR */
+    .card {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: 290px;
+      height: 195px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      opacity: 0;
+      transition: transform 0.7s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.4s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      padding: 15px;
+      text-align: center;
+    }
+
+    /* ESTADO ABIERTO */
+    .envelope-wrapper.open .wax-seal {
+      transform: translateX(-50%) scale(1.3) rotate(45deg);
+      opacity: 0;
+    }
+
+    .envelope-wrapper.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+      transition: transform 0.5s ease-in-out, z-index 0.1s 0.2s;
+    }
+
+    .envelope-wrapper.open .card {
+      transform: translateX(-50%) translateY(-165px);
+      opacity: 1;
+      z-index: 10;
+      transition: transform 0.7s cubic-bezier(0.34, 1.2, 0.64, 1) 0.3s, opacity 0.3s ease 0.3s;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    /* ESTILOS DE CADA CARTA */
+    /* CARTA 1: ROJA DE CUMPLEAÑOS */
+    .env-1 { background-color: #d90429; }
+    .env-1 .envelope-flap { border-top: 160px solid #ef233c; }
+    .env-1 .envelope-pocket::before {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      border-bottom: 125px solid #ff4d6d; border-left: 160px solid #f72585;
+      border-right: 160px solid transparent; border-bottom-left-radius: 16px;
+    }
+    .env-1 .envelope-pocket::after {
+      content: ''; position: absolute; bottom: 0; right: 0;
+      border-bottom: 125px solid #ff4d6d; border-right: 160px solid #f72585;
+      border-left: 160px solid transparent; border-bottom-right-radius: 16px;
+    }
+    .env-1 .wax-seal { background: radial-gradient(circle at 30% 30%, #ff758f, #800f2f); }
+    .env-1 .card {
+      background: linear-gradient(145deg, #ffffff 0%, #ffe5ec 100%);
+      border: 2px solid #ffb3c1;
+    }
+
+    /* CARTA 2: AZUL DE DESEOS */
+    .env-2 { background-color: #1d3557; }
+    .env-2 .envelope-flap { border-top: 160px solid #457b9d; }
+    .env-2 .envelope-pocket::before {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      border-bottom: 125px solid #a8dadc; border-left: 160px solid #457b9d;
+      border-right: 160px solid transparent; border-bottom-left-radius: 16px;
+    }
+    .env-2 .envelope-pocket::after {
+      content: ''; position: absolute; bottom: 0; right: 0;
+      border-bottom: 125px solid #a8dadc; border-right: 160px solid #457b9d;
+      border-left: 160px solid transparent; border-bottom-right-radius: 16px;
+    }
+    .env-2 .wax-seal { background: radial-gradient(circle at 30% 30%, #457b9d, #1d3557); }
+    .env-2 .card {
+      background: linear-gradient(145deg, #ffffff 0%, #e0f4f7 100%);
+      border: 2px solid #a8dadc;
+    }
+
+    /* CARTA 3: MORADA DE AMOR */
+    .env-3 { background-color: #5a189a; }
+    .env-3 .envelope-flap { border-top: 160px solid #7b2cbf; }
+    .env-3 .envelope-pocket::before {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      border-bottom: 125px solid #c77dff; border-left: 160px solid #9d4edd;
+      border-right: 160px solid transparent; border-bottom-left-radius: 16px;
+    }
+    .env-3 .envelope-pocket::after {
+      content: ''; position: absolute; bottom: 0; right: 0;
+      border-bottom: 125px solid #c77dff; border-right: 160px solid #9d4edd;
+      border-left: 160px solid transparent; border-bottom-right-radius: 16px;
+    }
+    .env-3 .wax-seal { background: radial-gradient(circle at 30% 30%, #e0aaff, #5a189a); }
+    .env-3 .card {
+      background: linear-gradient(145deg, #ffffff 0%, #f3e8ff 100%);
+      border: 2px solid #c77dff;
+    }
+
+    /* CONTENIDO DE LAS CARTAS */
+    .cake-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    .candle {
+      width: 8px; height: 22px;
+      background: repeating-linear-gradient(45deg, #fff, #fff 4px, #e84393 4px, #e84393 8px);
+      border-radius: 4px; position: relative;
+    }
+    .flame {
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      width: 9px; height: 12px; background-color: #ffda79;
+      border-radius: 50% 50% 20% 20%;
+      box-shadow: 0 0 8px #ffda79, 0 0 15px #ffbe76;
+      animation: flicker 0.8s infinite alternate ease-in-out;
+    }
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(1); }
+      100% { transform: translateX(-50%) scale(1.2); }
+    }
+    .cake {
+      width: 100px; height: 35px;
+      background: linear-gradient(to bottom, #8d493a 0%, #5c3026 100%);
+      border-radius: 8px 8px 5px 5px; position: relative;
+    }
+    .frosting {
+      width: 100%; height: 10px; background-color: #ffffff;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .font-cursive {
+      font-family: 'Great Vibes', cursive;
+      color: #c2185b;
+      font-size: 1.35em;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.2;
+      width: 100%;
+      margin-top: 6px;
+      opacity: 0;
+    }
+
+    .env-1.open .font-cursive {
+      animation: fadeInText 1.2s ease-in 0.7s forwards;
+    }
+    .env-1 .font-cursive::after {
+      content: "Happy birthday My Best Abigail";
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .title-blue { color: #1d3557; }
+    .title-purple { color: #5a189a; }
+
+    .card-text {
+      font-size: 0.82rem;
+      line-height: 1.35;
+      color: #4a4a4a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ELEMENTO AUDIO CON ARCHIVO LOCAL -->
+  <audio id="bgMusic" preload="auto">
+    <source src="Vivir Mi Vida.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- BOTÓN FLOTANTE ESTILO VINILO -->
+  <button id="musicToggle" class="music-controller" onclick="toggleAudio()" title="Controlar Música">🎵</button>
+
+  <!-- ENCABEZADO -->
+  <div class="header-title">
+    <h1>¡Feliz Cumpleaños Abigail! 🎉</h1>
+    <div class="hint">✨ Toca cualquier sobre para abrirlo ✨</div>
+  </div>
+
+  <!-- FONDO ANIMADO -->
+  <div class="bg-decorations">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <div class="glow-orb orb-4"></div>
+
+    <div class="floating-item item-1">🎈</div>
+    <div class="floating-item item-2">💖</div>
+    <div class="floating-item item-3">✨</div>
+    <div class="floating-item item-4">🌸</div>
+    <div class="floating-item item-5">🎉</div>
+    <div class="floating-item item-6">🎁</div>
+
+    <div class="star s1"></div>
+    <div class="star s2"></div>
+    <div class="star s3"></div>
+    <div class="star s4"></div>
+    <div class="star s5"></div>
+    <div class="star s6"></div>
+
+    <div class="confetti c1"></div>
+    <div class="confetti c2"></div>
+    <div class="confetti c3"></div>
+    <div class="confetti c4"></div>
+    <div class="confetti c5"></div>
+  </div>
+
+  <!-- GALERÍA DE CARTAS -->
+  <div class="cards-grid">
+    
+    <!-- CARTA 1: CUMPLEAÑOS -->
+    <div class="envelope-wrapper env-1">
+      <div class="wax-seal"><span>💌</span></div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-pocket"></div>
+      <div class="card">
+        <div class="cake-container">
+          <div class="candle"><div class="flame"></div></div>
+          <div class="cake"><div class="frosting"></div></div>
+        </div>
+        <div class="font-cursive"></div>
+      </div>
+    </div>
+
+    <!-- CARTA 2: DESEOS -->
+    <div class="envelope-wrapper env-2">
+      <div class="wax-seal"><span>🌟</span></div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-pocket"></div>
+      <div class="card">
+        <div class="card-title title-blue">Para Abigail ✨</div>
+        <div class="card-text">
+          ¡Feliz cumpleaños, Abigail! 💗🥹 Que Dios te bendiga siempre, que nunca te falten motivos para sonreír y que todos tus sueños se hagan realidad. Gracias por estos dos años de amistad, por cada risa, cada momento y cada recuerdo compartido. Me alegra mucho haberte conocido y espero que sigamos compartiendo muchísimas experiencias más. ¡Te quiero mucho! Nunca cambies.
+        </div>
+      </div>
+    </div>
+
+    <!-- CARTA 3: AMOR -->
+    <div class="envelope-wrapper env-3">
+      <div class="wax-seal"><span>💖</span></div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-pocket"></div>
+      <div class="card">
+        <div class="card-title title-purple">Con todo mi amor 🌸</div>
+        <div class="card-text">
+          A veces no sabemos cuánto puede significar una amistad hasta que miramos atrás y nos damos cuenta de todos los momentos que hemos compartido. Gracias por estos dos años, por las risas, las ocurrencias y hasta por esos pequeños momentos que quizás parecen simples, pero que se convierten en recuerdos especiales. Espero que la vida nos permita seguir coincidiendo, creciendo y celebrando muchos cumpleaños más. Recuerda que siempre voy a desearte lo mejor. ¡Disfruta muchísimo tu día!
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const audio = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicToggle');
+    let hasPlayedOnce = false;
+
+    // ABRIR CARTAS Y REPRODUCIR MÚSICA AUTOMÁTICAMENTE LA PRIMERA VEZ
+    const envelopes = document.querySelectorAll('.envelope-wrapper');
+    envelopes.forEach(envelope => {
+      envelope.addEventListener('click', () => {
+        envelope.classList.toggle('open');
+        
+        // Autoplay al abrir cualquier carta por primera vez
+        if (!hasPlayedOnce && audio.paused) {
+          audio.play().then(() => {
+            musicBtn.classList.add('playing');
+            musicBtn.innerText = '🔊';
+            hasPlayedOnce = true;
+          }).catch(e => console.log('Autoplay audio restriction:', e));
+        }
+      });
+    });
+
+    // FUNCIONALIDAD IGUAL AL CÓDIGO PROMO
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        musicBtn.classList.add('playing');
+        musicBtn.innerText = '🔊';
+      } else {
+        audio.pause();
+        musicBtn.classList.remove('playing');
+        musicBtn.innerText = '🎵';
+      }
+    }
+
+    audio.addEventListener('ended', () => {
+      musicBtn.classList.remove('playing');
+      musicBtn.innerText = '🎵';
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && !audio.paused) {
+        audio.pause();
+        musicBtn.classList.remove('playing');
+        musicBtn.innerText = '🎵';
+      }
+    });
+
+    window.addEventListener('blur', () => {
+      if (!audio.paused) {
+        audio.pause();
+        musicBtn.classList.remove('playing');
+        musicBtn.innerText = '🎵';
+      }
+    });
+  </script>
+
+</body>
+</html>
