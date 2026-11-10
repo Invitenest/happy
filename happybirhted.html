@@ -22,11 +22,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
+      padding: 30px 15px 100px 15px;
       position: relative;
     }
 
-    /* --- REPRODUCTOR ESTILO VINILO DEL CÓDIGO PROMO --- */
+    /* --- REPRODUCTOR ESTILO VINILO --- */
     .music-controller {
       position: fixed;
       bottom: 24px;
@@ -43,7 +43,7 @@
       font-size: 20px;
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 15px rgba(212, 175, 55, 0.4);
-      z-index: 100;
+      z-index: 1000;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -73,7 +73,6 @@
       overflow: hidden;
     }
 
-    /* Luces Neón */
     .glow-orb {
       position: absolute;
       width: 380px;
@@ -93,7 +92,6 @@
       100% { opacity: 0.65; transform: scale(1.25); }
     }
 
-    /* Elementos Flotantes */
     .floating-item {
       position: absolute;
       font-size: 2rem;
@@ -116,7 +114,6 @@
       100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
     }
 
-    /* Estrellas Parpadeantes */
     .star {
       position: absolute;
       width: 4px;
@@ -139,7 +136,6 @@
       50% { transform: scale(2.4); opacity: 1; }
     }
 
-    /* Lluvia de Confeti */
     .confetti {
       position: absolute;
       width: 8px;
@@ -163,12 +159,12 @@
     .header-title {
       text-align: center;
       z-index: 10;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
     }
 
     .header-title h1 {
       color: #ffffff;
-      font-size: 2.6rem;
+      font-size: 2.2rem;
       font-weight: 600;
       text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(247, 37, 133, 0.4);
       margin-bottom: 8px;
@@ -176,7 +172,7 @@
 
     .hint {
       color: #ffb86c;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       font-weight: 600;
@@ -189,28 +185,33 @@
       50% { opacity: 1; transform: scale(1.03); }
     }
 
-    /* GRID DE LAS CARTAS */
+    /* GRID DE LAS CARTAS Y DISTRIBUCIÓN RESPONSIVA */
     .cards-grid {
       display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
       gap: 60px 40px;
       max-width: 1200px;
       width: 100%;
       z-index: 10;
-      margin-top: 40px;
+      margin-top: 200px;
     }
 
     /* SOBRE BASE */
     .envelope-wrapper {
       position: relative;
-      width: 320px;
-      height: 220px;
+      width: 310px;
+      height: 200px;
       border-radius: 16px;
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75);
       cursor: pointer;
-      margin-top: 50px;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, z-index 0.3s ease;
+      z-index: 5;
+    }
+
+    .envelope-wrapper.active-z {
+      z-index: 50 !important;
     }
 
     .envelope-wrapper:hover {
@@ -224,8 +225,8 @@
       left: 0;
       width: 0;
       height: 0;
-      border-left: 160px solid transparent;
-      border-right: 160px solid transparent;
+      border-left: 155px solid transparent;
+      border-right: 155px solid transparent;
       transform-origin: top;
       z-index: 5;
       transition: transform 0.5s ease-in-out, z-index 0.1s 0.2s;
@@ -246,11 +247,11 @@
     /* SELLO DE CERA */
     .wax-seal {
       position: absolute;
-      top: 115px;
+      top: 98px;
       left: 50%;
       transform: translateX(-50%);
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       z-index: 6;
       display: flex;
@@ -262,28 +263,29 @@
     }
 
     .wax-seal span {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
 
-    /* CARTA INTERIOR */
+    /* CARTA INTERIOR CON TAMAÑO Y POSICIÓN OPTIMIZADA */
     .card {
       position: absolute;
       bottom: 0px;
       left: 50%;
       transform: translateX(-50%) translateY(10px);
-      width: 290px;
-      height: 195px;
+      width: 285px;
+      height: 185px;
       border-radius: 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       z-index: 2;
       opacity: 0;
-      transition: transform 0.7s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.4s ease;
+      transition: transform 0.7s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.4s ease, height 0.5s ease;
       box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      padding: 15px;
+      padding: 14px;
       text-align: center;
+      overflow: hidden;
     }
 
     /* ESTADO ABIERTO */
@@ -299,45 +301,49 @@
     }
 
     .envelope-wrapper.open .card {
-      transform: translateX(-50%) translateY(-165px);
+      transform: translateX(-50%) translateY(-190px);
+      height: 330px;
       opacity: 1;
       z-index: 10;
-      transition: transform 0.7s cubic-bezier(0.34, 1.2, 0.64, 1) 0.3s, opacity 0.3s ease 0.3s;
+      transition: transform 0.7s cubic-bezier(0.34, 1.2, 0.64, 1) 0.3s, opacity 0.3s ease 0.3s, height 0.5s ease 0.3s;
       box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     }
 
     /* ESTILOS DE CADA CARTA */
-    /* CARTA 1: ROJA DE CUMPLEAÑOS */
     .env-1 { background-color: #d90429; }
-    .env-1 .envelope-flap { border-top: 160px solid #ef233c; }
+    .env-1 .envelope-flap { border-top: 145px solid #ef233c; }
     .env-1 .envelope-pocket::before {
       content: ''; position: absolute; bottom: 0; left: 0;
-      border-bottom: 125px solid #ff4d6d; border-left: 160px solid #f72585;
-      border-right: 160px solid transparent; border-bottom-left-radius: 16px;
+      border-bottom: 115px solid #ff4d6d; border-left: 155px solid #f72585;
+      border-right: 155px solid transparent; border-bottom-left-radius: 16px;
     }
     .env-1 .envelope-pocket::after {
       content: ''; position: absolute; bottom: 0; right: 0;
-      border-bottom: 125px solid #ff4d6d; border-right: 160px solid #f72585;
-      border-left: 160px solid transparent; border-bottom-right-radius: 16px;
+      border-bottom: 115px solid #ff4d6d; border-right: 155px solid #f72585;
+      border-left: 155px solid transparent; border-bottom-right-radius: 16px;
     }
     .env-1 .wax-seal { background: radial-gradient(circle at 30% 30%, #ff758f, #800f2f); }
     .env-1 .card {
       background: linear-gradient(145deg, #ffffff 0%, #ffe5ec 100%);
       border: 2px solid #ffb3c1;
+      justify-content: center;
+    }
+    .env-1.open .card {
+      height: 200px;
+      transform: translateX(-50%) translateY(-140px);
     }
 
-    /* CARTA 2: AZUL DE DESEOS */
     .env-2 { background-color: #1d3557; }
-    .env-2 .envelope-flap { border-top: 160px solid #457b9d; }
+    .env-2 .envelope-flap { border-top: 145px solid #457b9d; }
     .env-2 .envelope-pocket::before {
       content: ''; position: absolute; bottom: 0; left: 0;
-      border-bottom: 125px solid #a8dadc; border-left: 160px solid #457b9d;
-      border-right: 160px solid transparent; border-bottom-left-radius: 16px;
+      border-bottom: 115px solid #a8dadc; border-left: 155px solid #457b9d;
+      border-right: 155px solid transparent; border-bottom-left-radius: 16px;
     }
     .env-2 .envelope-pocket::after {
       content: ''; position: absolute; bottom: 0; right: 0;
-      border-bottom: 125px solid #a8dadc; border-right: 160px solid #457b9d;
-      border-left: 160px solid transparent; border-bottom-right-radius: 16px;
+      border-bottom: 115px solid #a8dadc; border-right: 155px solid #457b9d;
+      border-left: 155px solid transparent; border-bottom-right-radius: 16px;
     }
     .env-2 .wax-seal { background: radial-gradient(circle at 30% 30%, #457b9d, #1d3557); }
     .env-2 .card {
@@ -345,18 +351,17 @@
       border: 2px solid #a8dadc;
     }
 
-    /* CARTA 3: MORADA DE AMOR */
     .env-3 { background-color: #5a189a; }
-    .env-3 .envelope-flap { border-top: 160px solid #7b2cbf; }
+    .env-3 .envelope-flap { border-top: 145px solid #7b2cbf; }
     .env-3 .envelope-pocket::before {
       content: ''; position: absolute; bottom: 0; left: 0;
-      border-bottom: 125px solid #c77dff; border-left: 160px solid #9d4edd;
-      border-right: 160px solid transparent; border-bottom-left-radius: 16px;
+      border-bottom: 115px solid #c77dff; border-left: 155px solid #9d4edd;
+      border-right: 155px solid transparent; border-bottom-left-radius: 16px;
     }
     .env-3 .envelope-pocket::after {
       content: ''; position: absolute; bottom: 0; right: 0;
-      border-bottom: 125px solid #c77dff; border-right: 160px solid #9d4edd;
-      border-left: 160px solid transparent; border-bottom-right-radius: 16px;
+      border-bottom: 115px solid #c77dff; border-right: 155px solid #9d4edd;
+      border-left: 155px solid transparent; border-bottom-right-radius: 16px;
     }
     .env-3 .wax-seal { background: radial-gradient(circle at 30% 30%, #e0aaff, #5a189a); }
     .env-3 .card {
@@ -364,7 +369,7 @@
       border: 2px solid #c77dff;
     }
 
-    /* CONTENIDO DE LAS CARTAS */
+    /* CONTENIDO DE TEXTO */
     .cake-container {
       display: flex;
       flex-direction: column;
@@ -400,7 +405,7 @@
     .font-cursive {
       font-family: 'Great Vibes', cursive;
       color: #c2185b;
-      font-size: 1.35em;
+      font-size: 1.3em;
       font-weight: 700;
       text-align: center;
       line-height: 1.2;
@@ -423,22 +428,74 @@
 
     .card-title {
       font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 6px;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      flex-shrink: 0;
     }
     .title-blue { color: #1d3557; }
     .title-purple { color: #5a189a; }
 
     .card-text {
-      font-size: 0.82rem;
-      line-height: 1.35;
-      color: #4a4a4a;
+      font-size: 0.81rem;
+      line-height: 1.45;
+      color: #2b2b2b;
+      text-align: justify;
+      overflow-y: auto;
+      padding-right: 4px;
+      height: 100%;
+    }
+
+    .card-text::-webkit-scrollbar {
+      width: 4px;
+    }
+    .card-text::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.2);
+      border-radius: 4px;
+    }
+
+    /* REGLAS ESPECÍFICAS PARA CELULARES */
+    @media (max-width: 768px) {
+      .header-title h1 {
+        font-size: 1.8rem;
+      }
+      .cards-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 160px 0;
+        margin-top: 170px;
+      }
+      .envelope-wrapper {
+        width: 290px;
+        height: 190px;
+      }
+      .envelope-flap {
+        border-left-width: 145px;
+        border-right-width: 145px;
+        border-top-width: 135px;
+      }
+      .env-1 .envelope-pocket::before, .env-1 .envelope-pocket::after,
+      .env-2 .envelope-pocket::before, .env-2 .envelope-pocket::after,
+      .env-3 .envelope-pocket::before, .env-3 .envelope-pocket::after {
+        border-left-width: 145px;
+        border-right-width: 145px;
+      }
+      .card {
+        width: 265px;
+      }
+      .envelope-wrapper.open .card {
+        transform: translateX(-50%) translateY(-175px);
+        height: 310px;
+      }
+      .env-1.open .card {
+        height: 190px;
+        transform: translateX(-50%) translateY(-130px);
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- ELEMENTO AUDIO CON ARCHIVO LOCAL -->
+  <!-- ELEMENTO AUDIO -->
   <audio id="bgMusic" preload="auto">
     <source src="Perfect.mp3" type="audio/mpeg">
   </audio>
@@ -528,26 +585,27 @@
   <script>
     const audio = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicToggle');
-    let hasPlayedOnce = false;
 
-    // ABRIR CARTAS Y REPRODUCIR MÚSICA AUTOMÁTICAMENTE LA PRIMERA VEZ
     const envelopes = document.querySelectorAll('.envelope-wrapper');
     envelopes.forEach(envelope => {
       envelope.addEventListener('click', () => {
-        envelope.classList.toggle('open');
+        // Remover prioridad de z-index de otros sobres para traer el actual al frente
+        envelopes.forEach(e => e.classList.remove('active-z'));
         
-        // Autoplay al abrir cualquier carta por primera vez
-        if (!hasPlayedOnce && audio.paused) {
+        envelope.classList.toggle('open');
+        if (envelope.classList.contains('open')) {
+          envelope.classList.add('active-z');
+        }
+
+        if (audio.paused) {
           audio.play().then(() => {
             musicBtn.classList.add('playing');
             musicBtn.innerText = '🔊';
-            hasPlayedOnce = true;
-          }).catch(e => console.log('Autoplay audio restriction:', e));
+          }).catch(e => console.log('Autoplay audio:', e));
         }
       });
     });
 
-    // FUNCIONALIDAD IGUAL AL CÓDIGO PROMO
     function toggleAudio() {
       if (audio.paused) {
         audio.play();
